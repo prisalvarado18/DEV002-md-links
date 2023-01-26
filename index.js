@@ -35,4 +35,10 @@ const isDirectory = (pathname) => {
 // console.log(isDirectory('C:/Users/palva/OneDrive/Documents/proyectosLaboratoria/DEV002-md-links/test/folder'));
 // console.log(isDirectory('C:/Users/palva/OneDrive/Documents/proyectosLaboratoria/DEV002-md-links/test/folder/archive.md'));
 
+// Read Directory
+const readDirectory = (pathname) => {
+    const content = fs.readdirSync(pathname);
+    return content;
+}
+
 module.exports = { fileExists, checkPath, convertToAbsolutePath, isDirectory };
