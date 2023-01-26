@@ -16,7 +16,7 @@ const realRelativePath = 'test/folder/archive.md'
 const dirPath = 'C:/Users/palva/OneDrive/Documents/proyectosLaboratoria/DEV002-md-links/test/folder';
 
 describe('fileExists', () => {
-  it('fileExists should be a function', () => {
+  it('should be a function', () => {
     expect(typeof fileExists).toBe('function');
   });
   it('should return true if the path exists', () => {
@@ -28,7 +28,7 @@ describe('fileExists', () => {
 });
 
 describe('checkPath', () => {
-  it('checkPath should be a function', () => {
+  it('should be a function', () => {
     expect(typeof checkPath).toBe('function');
   });
   it('should return true if the is absolute', () => {
@@ -40,7 +40,7 @@ describe('checkPath', () => {
 });
 
 describe('convertToAbsolutePath', () => {
-  it('convertToAbsolutePath should be a function', () => {
+  it('should be a function', () => {
     expect(typeof convertToAbsolutePath).toBe('function');
   });
   it('should convert the path entered to an absolute one', () => {
