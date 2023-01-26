@@ -27,4 +27,4 @@ const convertToAbsolutePath = (pathname) => {
 }
 // console.log(convertToAbsolutePath('./folder/archive.md'));
 
-module.exports = {fileExists, checkPath, convertToAbsolutePath};
+module.exports = { fileExists, checkPath, convertToAbsolutePath };
