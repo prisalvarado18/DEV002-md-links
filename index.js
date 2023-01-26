@@ -41,4 +41,5 @@ const readDirectory = (pathname) => {
     return content;
 }
 // console.log(readDirectory('C:/Users/palva/OneDrive/Documents/proyectosLaboratoria/DEV002-md-links/test/folder'));
+// console.log(readDirectory('C:/Users/palva/OneDrive/Documents/proyectosLaboratoria/DEV002-md-links/test/folder/emptyFolder'));
 module.exports = { fileExists, checkPath, convertToAbsolutePath, isDirectory, readDirectory };
