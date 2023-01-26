@@ -18,7 +18,7 @@
     "test": "jest --coverage --verbose"
   },
   "repository": {
-    "type": "git",
+    "type": "module",
     "url": "git+https://github.com/prisalvarado18/DEV002-md-links.git"
   },
   "author": "Priscila Alvarado",
