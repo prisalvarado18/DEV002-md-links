@@ -20,4 +20,4 @@ const checkPath = (pathname) => {
     return path.isAbsolute(pathname) ? true : false;
 }
 
-module.exports = {fileExists};
+module.exports = {fileExists, checkPath};
