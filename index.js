@@ -14,4 +14,9 @@ const fileExists = (pathname) => {
     return fileExists ? true : false;
 }
 
+// Check if the path is absolute or relative and return an absolute one
+// Check if path is absolute
+const checkPath = (pathname) => {
+    return path.isAbsolute(pathname) ? true : false;
+}
 
