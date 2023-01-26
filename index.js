@@ -9,9 +9,10 @@ const path = require('path');
 const fs = require('fs');
 
 // Check if path exists
-const fileExists = (pathname) => {
+export const fileExists = (pathname) => {
     const fileExists = fs.existsSync(pathname);
     return fileExists ? true : false;
 }
 
 
+module.exports = {fileExists};
