@@ -25,6 +25,14 @@ const convertToAbsolutePath = (pathname) => {
     const cwd = process.cwd();
     return path.resolve(cwd, pathname);
 }
-console.log(convertToAbsolutePath('./folder/archive.md'));
+// console.log(convertToAbsolutePath('./folder/archive.md'));
+
+// Check if path is a directory
+const isDirectory = (pathname) => {
+    const stats = fs.statSync(pathname);
+    return stats.isDirectory() ? true : false;
+}
+// console.log(isDirectory('C:/Users/palva/OneDrive/Documents/proyectosLaboratoria/DEV002-md-links/test/folder'));
+// console.log(isDirectory('C:/Users/palva/OneDrive/Documents/proyectosLaboratoria/DEV002-md-links/test/folder/archive.md'));
 
 module.exports = { fileExists, checkPath, convertToAbsolutePath };
