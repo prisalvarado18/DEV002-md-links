@@ -35,4 +35,4 @@ const isDirectory = (pathname) => {
 // console.log(isDirectory('C:/Users/palva/OneDrive/Documents/proyectosLaboratoria/DEV002-md-links/test/folder'));
 // console.log(isDirectory('C:/Users/palva/OneDrive/Documents/proyectosLaboratoria/DEV002-md-links/test/folder/archive.md'));
 
-module.exports = { fileExists, checkPath, convertToAbsolutePath };
+module.exports = { fileExists, checkPath, convertToAbsolutePath, isDirectory };
