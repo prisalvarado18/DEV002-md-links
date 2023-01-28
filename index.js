@@ -60,4 +60,4 @@ const isMdFile = (pathname) => {
 // console.log(isMdFile('C:/Users/palva/OneDrive/Documents/proyectosLaboratoria/DEV002-md-links/test/folder/archive.md'));
 
 
-module.exports = { fileExists, checkPath, convertToAbsolutePath, isDirectory, readDirectory, isFile };
+module.exports = { fileExists, checkPath, convertToAbsolutePath, isDirectory, readDirectory, isFile, isMdFile };
