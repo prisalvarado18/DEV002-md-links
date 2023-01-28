@@ -77,10 +77,10 @@ describe('isFile', () => {
   it('should be a function', () => {
     expect(typeof isFile).toBe('function');
   });
-  it('should return an array of files if it is not empty', () => {
+  it('should return true if the path points to a file', () => {
     expect(isFile(realAbsolutePath)).toEqual(true);
   });
-  it('should return an empty array if it is empty', () => {
+  it('should return false if the path points to a directory', () => {
     expect(isFile(dirPath)).toEqual(false);
   });
 });
