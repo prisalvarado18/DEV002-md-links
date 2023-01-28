@@ -42,4 +42,13 @@ const readDirectory = (pathname) => {
 }
 // console.log(readDirectory('C:/Users/palva/OneDrive/Documents/proyectosLaboratoria/DEV002-md-links/test/folder'));
 // console.log(readDirectory('C:/Users/palva/OneDrive/Documents/proyectosLaboratoria/DEV002-md-links/test/folder/emptyFolder'));
+
+// Check if a path points to a file
+const isFile = (pathname) => {
+    const stats = fs.statSync(pathname);
+    return stats.isFile() ? true : false;
+}
+// console.log(isFile('C:/Users/palva/OneDrive/Documents/proyectosLaboratoria/DEV002-md-links/test/folder'));
+// console.log(isFile('C:/Users/palva/OneDrive/Documents/proyectosLaboratoria/DEV002-md-links/test/folder/archive.md'));
+
 module.exports = { fileExists, checkPath, convertToAbsolutePath, isDirectory, readDirectory };
