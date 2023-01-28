@@ -51,4 +51,10 @@ const isFile = (pathname) => {
 // console.log(isFile('C:/Users/palva/OneDrive/Documents/proyectosLaboratoria/DEV002-md-links/test/folder'));
 // console.log(isFile('C:/Users/palva/OneDrive/Documents/proyectosLaboratoria/DEV002-md-links/test/folder/archive.md'));
 
+// Check if the entered path points to a .md file
+const isMdFile = (pathname) => {
+    const stats = fs.statSync(pathname);
+    return path.extname(pathname) === ".md" ? true : false;
+}
+
 module.exports = { fileExists, checkPath, convertToAbsolutePath, isDirectory, readDirectory, isFile };
