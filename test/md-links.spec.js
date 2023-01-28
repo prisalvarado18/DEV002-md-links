@@ -126,10 +126,10 @@ describe('readFile', () => {
   it('should be a function', () => {
     expect(typeof readFile).toBe('function');
   });
-  it('should return an empty array', () => {
+  it('should return "Nemo censetur ignorare legem"', () => {
     expect(readFile(latinQuote)).resolves.toEqual('Nemo censetur ignorare legem');
   });
   // it('should return an array with markdwon files', () => {
-  //   expect(getMdFileArray(mdFilesPath)).toEqual(mdFilesArray);
+  //   expect(readFile(dirEmptyPath)).rejects.toThrow(error);
   // });
 });
