@@ -56,5 +56,8 @@ const isMdFile = (pathname) => {
     const stats = fs.statSync(pathname);
     return path.extname(pathname) === ".md" ? true : false;
 }
+// console.log(isMdFile('C:/Users/palva/OneDrive/Documents/proyectosLaboratoria/DEV002-md-links/test/folder/quiz.txt'));
+// console.log(isMdFile('C:/Users/palva/OneDrive/Documents/proyectosLaboratoria/DEV002-md-links/test/folder/archive.md'));
+
 
 module.exports = { fileExists, checkPath, convertToAbsolutePath, isDirectory, readDirectory, isFile };
