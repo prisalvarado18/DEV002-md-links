@@ -8,13 +8,14 @@
 //   });
 
 // });
-const { fileExists, checkPath, convertToAbsolutePath, isDirectory, readDirectory, isFile } = require('../index.js');
+const { fileExists, checkPath, convertToAbsolutePath, isDirectory, readDirectory, isFile, isMdFile } = require('../index.js');
 
 const realAbsolutePath = 'C:/Users/palva/OneDrive/Documents/proyectosLaboratoria/DEV002-md-links/test/folder/archive.md';
 const falseRelativePath = './notRealfolder/archive.md';
 const realRelativePath = 'test/folder/archive.md'
 const dirPath = 'C:/Users/palva/OneDrive/Documents/proyectosLaboratoria/DEV002-md-links/test/folder';
 const dirEmptyPath = 'C:/Users/palva/OneDrive/Documents/proyectosLaboratoria/DEV002-md-links/test/folder/emptyFolder';
+const txtPath = 'C:/Users/palva/OneDrive/Documents/proyectosLaboratoria/DEV002-md-links/test/folder/quiz.txt';
 
 describe('fileExists', () => {
   it('should be a function', () => {
@@ -66,7 +67,7 @@ describe('readDirectory', () => {
     expect(typeof readDirectory).toBe('function');
   });
   it('should return an array of files if it is not empty', () => {
-    expect(readDirectory(dirPath)).toEqual(['archive.md', 'emptyFolder']);
+    expect(readDirectory(dirPath)).toEqual(['archive.md', 'emptyFolder', 'quiz.txt']);
   });
   it('should return an empty array if it is empty', () => {
     expect(readDirectory(dirEmptyPath)).toEqual([ ]);
@@ -82,5 +83,17 @@ describe('isFile', () => {
   });
   it('should return false if the path points to a directory', () => {
     expect(isFile(dirPath)).toEqual(false);
+  });
+});
+
+describe('isMdFile', () => {
+  it('should be a function', () => {
+    expect(typeof isMdFile).toBe('function');
+  });
+  it('should return true if the path points to a file', () => {
+    expect(isMdFile(realAbsolutePath)).toEqual(true);
+  });
+  it('should return false if the path points to a directory', () => {
+    expect(isMdFile(txtPath)).toEqual(false);
   });
 });
