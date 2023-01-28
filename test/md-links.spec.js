@@ -81,6 +81,6 @@ describe('isFile', () => {
     expect(isFile(realAbsolutePath)).toEqual(true);
   });
   it('should return an empty array if it is empty', () => {
-    expect(readDirectory(dirEmptyPath)).toEqual([ ]);
+    expect(isFile(dirPath)).toEqual(false);
   });
 });
