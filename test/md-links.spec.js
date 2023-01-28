@@ -78,10 +78,10 @@ describe('isFile', () => {
   it('should be a function', () => {
     expect(typeof isFile).toBe('function');
   });
-  it('should return true if the path points to a file', () => {
+  it('should return true if the path points to a markdown file', () => {
     expect(isFile(realAbsolutePath)).toEqual(true);
   });
-  it('should return false if the path points to a directory', () => {
+  it('should return false if does not point to a markdown file', () => {
     expect(isFile(dirPath)).toEqual(false);
   });
 });
