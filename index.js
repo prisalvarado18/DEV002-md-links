@@ -87,4 +87,14 @@ const readFile = (pathname) => {
     });
 };
 
+// Get links
+const getLinks = (file, type) => {
+    return new Promise((resolve, reject) => {
+        fs.readFile(file, type, (error, data) => {
+            const enlaces = data.match(/\[([\w\s\d]+)\]\(((?:\/|https?:\/\/)[\w\d./?=#]+[a-zA-Z0-9!-_$]+)\)/gi);
+            return error ? reject(error) : resolve(enlaces);
+        });
+    });
+};
+
 module.exports = { fileExists, checkPath, convertToAbsolutePath, isDirectory, readDirectory, isFile, isMdFile, getMdFileArray, readFile };
