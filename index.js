@@ -59,5 +59,19 @@ const isMdFile = (pathname) => {
 // console.log(isMdFile('C:/Users/palva/OneDrive/Documents/proyectosLaboratoria/DEV002-md-links/test/folder/quiz.txt'));
 // console.log(isMdFile('C:/Users/palva/OneDrive/Documents/proyectosLaboratoria/DEV002-md-links/test/folder/archive.md'));
 
+// Save an array of markdown files with a recursive function
+const getMdFileArray = (pathname) => {
+    let files = [];
+    if (isFile(pathname) && isMdFile(pathname)) {
+        files.push(pathname)
+    } else if (isDirectory(pathname)) {
+        const items = readDirectory(pathname);
+        items.map((item) => {
+            files = files.concat(getMdFileArray(`${pathname}/${item}`));
+        });
+    }
+    return files;
+}
+
 
 module.exports = { fileExists, checkPath, convertToAbsolutePath, isDirectory, readDirectory, isFile, isMdFile };
