@@ -72,6 +72,6 @@ const getMdFileArray = (pathname) => {
     }
     return files;
 }
-
+console.log(getMdFileArray('C:/Users/palva/OneDrive/Documents/proyectosLaboratoria/DEV002-md-links/test/folder'));
 
 module.exports = { fileExists, checkPath, convertToAbsolutePath, isDirectory, readDirectory, isFile, isMdFile };
