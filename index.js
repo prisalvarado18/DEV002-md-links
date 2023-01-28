@@ -88,6 +88,15 @@ const readFile = (pathname) => {
 };
 
 // Get links
+// First try
+// const getLinks = (file) => {
+//     fs.readFile(file, 'utf8', (error, data) => {
+//         const enlaces = data.match(/\[([\w\s\d]+)\]\(((?:\/|https?:\/\/)[\w\d./?=#]+[a-zA-Z0-9!-_$]+)\)/gi);
+//         return error ? (error) : (enlaces);
+//     });
+// };
+// console.log(getLinks('C:/Users/palva/OneDrive/Documents/proyectosLaboratoria/DEV002-md-links/test/folder/anotherFolder/randomStuff/theRaven.md'))
+// Second try
 const getLinks = (file, type) => {
     return new Promise((resolve, reject) => {
         fs.readFile(file, type, (error, data) => {
@@ -96,5 +105,26 @@ const getLinks = (file, type) => {
         });
     });
 };
+// Get all links from markdown file
+let arrayMDocuments = [];
+const getAllLinks = (pathname) => {
+    if (fileExists(pathname)) {
+        checkPath(pathname);
+        convertToAbsolutePath(pathname);
+        getMdFileArray(pathname).forEach((file) => {
+            arrayMDocuments.push(file);
+        })
+        return arrayMDocuments;
+    }
+}
+getAllLinks('C:/Users/palva/OneDrive/Documents/proyectosLaboratoria/DEV002-md-links/test/folder/anotherFolder/randomStuff/theRaven.md');
+
+arrayMDocuments.forEach((file) => {
+    getLinks(file, 'utf8')
+        .then((file2) => {
+            console.log(file2);
+        })
+})
+
 
 module.exports = { fileExists, checkPath, convertToAbsolutePath, isDirectory, readDirectory, isFile, isMdFile, getMdFileArray, readFile };
