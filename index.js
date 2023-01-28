@@ -41,4 +41,11 @@ const readDirectory = (pathname) => {
     return content;
 }
 // console.log(readDirectory('C:/Users/palva/OneDrive/Documents/proyectosLaboratoria/DEV002-md-links/test/folder'));
+
+// Check if a path points to a file
+const isFile = (pathname) => {
+    const stats = fs.statSync(pathname);
+    return stats.isFile() ? true : false;
+}
+
 module.exports = { fileExists, checkPath, convertToAbsolutePath, isDirectory, readDirectory };
