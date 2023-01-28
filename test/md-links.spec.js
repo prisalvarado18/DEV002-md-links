@@ -97,3 +97,15 @@ describe('isMdFile', () => {
     expect(isMdFile(txtPath)).toEqual(false);
   });
 });
+
+describe('getMdFileArray', () => {
+  it('should be a function', () => {
+    expect(typeof getMdFileArray).toBe('function');
+  });
+  it('should return true if the path points to a file', () => {
+    expect(isMdFile(realAbsolutePath)).toEqual(true);
+  });
+  it('should return false if the path points to a directory', () => {
+    expect(isMdFile(txtPath)).toEqual(false);
+  });
+});
