@@ -22,7 +22,9 @@ const mdFilesArray = [
   'C:/Users/palva/OneDrive/Documents/proyectosLaboratoria/DEV002-md-links/test/folder/anotherFolder/archive_002.md',
   'C:/Users/palva/OneDrive/Documents/proyectosLaboratoria/DEV002-md-links/test/folder/anotherFolder/inceptionFolder/archive_003.md',
   'C:/Users/palva/OneDrive/Documents/proyectosLaboratoria/DEV002-md-links/test/folder/anotherFolder/inceptionFolder/archive_004.md',
-  'C:/Users/palva/OneDrive/Documents/proyectosLaboratoria/DEV002-md-links/test/folder/anotherFolder/inceptionFolder/archive_005.md'
+  'C:/Users/palva/OneDrive/Documents/proyectosLaboratoria/DEV002-md-links/test/folder/anotherFolder/inceptionFolder/archive_005.md',
+  'C:/Users/palva/OneDrive/Documents/proyectosLaboratoria/DEV002-md-links/test/folder/anotherFolder/randomStuff/globalBrief.md',
+  'C:/Users/palva/OneDrive/Documents/proyectosLaboratoria/DEV002-md-links/test/folder/anotherFolder/randomStuff/theRaven.md',
 ]
 
 describe('fileExists', () => {
@@ -116,4 +118,16 @@ describe('getMdFileArray', () => {
   it('should return an array with markdwon files', () => {
     expect(getMdFileArray(mdFilesPath)).toEqual(mdFilesArray);
   });
+});
+
+describe('readFile', () => {
+  it('should be a function', () => {
+    expect(typeof readFile).toBe('function');
+  });
+  // it('should return an empty array', () => {
+  //   expect(getMdFileArray(dirEmptyPath)).toEqual([]);
+  // });
+  // it('should return an array with markdwon files', () => {
+  //   expect(getMdFileArray(mdFilesPath)).toEqual(mdFilesArray);
+  // });
 });
