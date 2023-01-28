@@ -8,7 +8,7 @@
 //   });
 
 // });
-const { fileExists, checkPath, convertToAbsolutePath, isDirectory, readDirectory } = require('../index.js');
+const { fileExists, checkPath, convertToAbsolutePath, isDirectory, readDirectory, isFile } = require('../index.js');
 
 const realAbsolutePath = 'C:/Users/palva/OneDrive/Documents/proyectosLaboratoria/DEV002-md-links/test/folder/archive.md';
 const falseRelativePath = './notRealfolder/archive.md';
@@ -70,5 +70,17 @@ describe('readDirectory', () => {
   });
   it('should return an empty array if it is empty', () => {
     expect(readDirectory(dirEmptyPath)).toEqual([ ]);
+  });
+});
+
+describe('isFile', () => {
+  it('should be a function', () => {
+    expect(typeof isFile).toBe('function');
+  });
+  it('should return true if the path points to a file', () => {
+    expect(isFile(realAbsolutePath)).toEqual(true);
+  });
+  it('should return false if the path points to a directory', () => {
+    expect(isFile(dirPath)).toEqual(false);
   });
 });
