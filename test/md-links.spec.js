@@ -78,7 +78,7 @@ describe('isFile', () => {
     expect(typeof isFile).toBe('function');
   });
   it('should return an array of files if it is not empty', () => {
-    expect(readDirectory(dirPath)).toEqual(['archive.md', 'emptyFolder']);
+    expect(isFile(realAbsolutePath)).toEqual(true);
   });
   it('should return an empty array if it is empty', () => {
     expect(readDirectory(dirEmptyPath)).toEqual([ ]);
