@@ -8,7 +8,7 @@
 //   });
 
 // });
-const { fileExists, checkPath, convertToAbsolutePath, isDirectory, readDirectory, isFile, isMdFile, getMdFileArray } = require('../index.js');
+const { fileExists, checkPath, convertToAbsolutePath, isDirectory, readDirectory, isFile, isMdFile, getMdFileArray, readFile } = require('../index.js');
 
 const realAbsolutePath = 'C:/Users/palva/OneDrive/Documents/proyectosLaboratoria/DEV002-md-links/test/folder/archive.md';
 const falseRelativePath = './notRealfolder/archive.md';
