@@ -8,7 +8,7 @@
 //   });
 
 // });
-const { fileExists, checkPath, convertToAbsolutePath, isDirectory, readDirectory, isFile, isMdFile, getMdFileArray } = require('../index.js');
+const { fileExists, checkPath, convertToAbsolutePath, isDirectory, readDirectory, isFile, isMdFile, getMdFileArray, readFile } = require('../index.js');
 
 const realAbsolutePath = 'C:/Users/palva/OneDrive/Documents/proyectosLaboratoria/DEV002-md-links/test/folder/archive.md';
 const falseRelativePath = './notRealfolder/archive.md';
@@ -22,8 +22,12 @@ const mdFilesArray = [
   'C:/Users/palva/OneDrive/Documents/proyectosLaboratoria/DEV002-md-links/test/folder/anotherFolder/archive_002.md',
   'C:/Users/palva/OneDrive/Documents/proyectosLaboratoria/DEV002-md-links/test/folder/anotherFolder/inceptionFolder/archive_003.md',
   'C:/Users/palva/OneDrive/Documents/proyectosLaboratoria/DEV002-md-links/test/folder/anotherFolder/inceptionFolder/archive_004.md',
-  'C:/Users/palva/OneDrive/Documents/proyectosLaboratoria/DEV002-md-links/test/folder/anotherFolder/inceptionFolder/archive_005.md'
+  'C:/Users/palva/OneDrive/Documents/proyectosLaboratoria/DEV002-md-links/test/folder/anotherFolder/inceptionFolder/archive_005.md',
+  'C:/Users/palva/OneDrive/Documents/proyectosLaboratoria/DEV002-md-links/test/folder/anotherFolder/randomStuff/globalBrief.md',
+  'C:/Users/palva/OneDrive/Documents/proyectosLaboratoria/DEV002-md-links/test/folder/anotherFolder/randomStuff/shortFile.md',
+  'C:/Users/palva/OneDrive/Documents/proyectosLaboratoria/DEV002-md-links/test/folder/anotherFolder/randomStuff/theRaven.md',
 ]
+const latinQuote = 'C:/Users/palva/OneDrive/Documents/proyectosLaboratoria/DEV002-md-links/test/folder/anotherFolder/randomStuff/shortFile.md';
 
 describe('fileExists', () => {
   it('should be a function', () => {
@@ -116,4 +120,16 @@ describe('getMdFileArray', () => {
   it('should return an array with markdwon files', () => {
     expect(getMdFileArray(mdFilesPath)).toEqual(mdFilesArray);
   });
+});
+
+describe('readFile', () => {
+  it('should be a function', () => {
+    expect(typeof readFile).toBe('function');
+  });
+  it('should return "Nemo censetur ignorare legem"', () => {
+    expect(readFile(latinQuote)).resolves.toEqual('Nemo censetur ignorare legem');
+  });
+  // it('should return an array with markdwon files', () => {
+  //   expect(readFile(dirEmptyPath)).rejects.toThrow(error);
+  // });
 });
