@@ -8,7 +8,7 @@
 //   });
 
 // });
-const { fileExists, checkPath, convertToAbsolutePath, isDirectory, readDirectory, isFile, isMdFile } = require('../index.js');
+const { fileExists, checkPath, convertToAbsolutePath, isDirectory, readDirectory, isFile, isMdFile, getMdFileArray } = require('../index.js');
 
 const realAbsolutePath = 'C:/Users/palva/OneDrive/Documents/proyectosLaboratoria/DEV002-md-links/test/folder/archive.md';
 const falseRelativePath = './notRealfolder/archive.md';
@@ -16,6 +16,14 @@ const realRelativePath = 'test/folder/archive.md'
 const dirPath = 'C:/Users/palva/OneDrive/Documents/proyectosLaboratoria/DEV002-md-links/test/folder';
 const dirEmptyPath = 'C:/Users/palva/OneDrive/Documents/proyectosLaboratoria/DEV002-md-links/test/folder/emptyFolder';
 const txtPath = 'C:/Users/palva/OneDrive/Documents/proyectosLaboratoria/DEV002-md-links/test/folder/quiz.txt';
+const mdFilesPath = 'C:/Users/palva/OneDrive/Documents/proyectosLaboratoria/DEV002-md-links/test/folder/anotherFolder';
+const mdFilesArray = [
+  'C:/Users/palva/OneDrive/Documents/proyectosLaboratoria/DEV002-md-links/test/folder/anotherFolder/archive_001.md',
+  'C:/Users/palva/OneDrive/Documents/proyectosLaboratoria/DEV002-md-links/test/folder/anotherFolder/archive_002.md',
+  'C:/Users/palva/OneDrive/Documents/proyectosLaboratoria/DEV002-md-links/test/folder/anotherFolder/inceptionFolder/archive_003.md',
+  'C:/Users/palva/OneDrive/Documents/proyectosLaboratoria/DEV002-md-links/test/folder/anotherFolder/inceptionFolder/archive_004.md',
+  'C:/Users/palva/OneDrive/Documents/proyectosLaboratoria/DEV002-md-links/test/folder/anotherFolder/inceptionFolder/archive_005.md'
+]
 
 describe('fileExists', () => {
   it('should be a function', () => {
@@ -70,7 +78,7 @@ describe('readDirectory', () => {
     expect(readDirectory(dirPath)).toEqual(['anotherFolder', 'archive.md', 'emptyFolder', 'quiz.txt']);
   });
   it('should return an empty array if it is empty', () => {
-    expect(readDirectory(dirEmptyPath)).toEqual([ ]);
+    expect(readDirectory(dirEmptyPath)).toEqual([]);
   });
 });
 
@@ -95,5 +103,17 @@ describe('isMdFile', () => {
   });
   it('should return false if the path points to a directory', () => {
     expect(isMdFile(txtPath)).toEqual(false);
+  });
+});
+
+describe('getMdFileArray', () => {
+  it('should be a function', () => {
+    expect(typeof getMdFileArray).toBe('function');
+  });
+  it('should return an empty array', () => {
+    expect(getMdFileArray(dirEmptyPath)).toEqual([]);
+  });
+  it('should return an array with markdwon files', () => {
+    expect(getMdFileArray(mdFilesPath)).toEqual(mdFilesArray);
   });
 });
