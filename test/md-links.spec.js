@@ -15,6 +15,7 @@ const falseRelativePath = './notRealfolder/archive.md';
 const realRelativePath = 'test/folder/archive.md'
 const dirPath = 'C:/Users/palva/OneDrive/Documents/proyectosLaboratoria/DEV002-md-links/test/folder';
 const dirEmptyPath = 'C:/Users/palva/OneDrive/Documents/proyectosLaboratoria/DEV002-md-links/test/folder/emptyFolder';
+const txtPath = 'C:/Users/palva/OneDrive/Documents/proyectosLaboratoria/DEV002-md-links/test/folder/quiz.txt';
 
 describe('fileExists', () => {
   it('should be a function', () => {
@@ -93,6 +94,6 @@ describe('isMdFile', () => {
     expect(isMdFile(realAbsolutePath)).toEqual(true);
   });
   it('should return false if the path points to a directory', () => {
-    expect(isFile(dirPath)).toEqual(false);
+    expect(isMdFile(txtPath)).toEqual(false);
   });
 });
