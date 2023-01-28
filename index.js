@@ -51,4 +51,4 @@ const isFile = (pathname) => {
 // console.log(isFile('C:/Users/palva/OneDrive/Documents/proyectosLaboratoria/DEV002-md-links/test/folder'));
 // console.log(isFile('C:/Users/palva/OneDrive/Documents/proyectosLaboratoria/DEV002-md-links/test/folder/archive.md'));
 
-module.exports = { fileExists, checkPath, convertToAbsolutePath, isDirectory, readDirectory };
+module.exports = { fileExists, checkPath, convertToAbsolutePath, isDirectory, readDirectory, isFile };
