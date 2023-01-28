@@ -73,5 +73,18 @@ const getMdFileArray = (pathname) => {
     return files;
 }
 // console.log(getMdFileArray('C:/Users/palva/OneDrive/Documents/proyectosLaboratoria/DEV002-md-links/test/folder'));
+// Read files
+// First try which directly returns the file's content
+// fs.readFile('C:/Users/palva/OneDrive/Documents/proyectosLaboratoria/DEV002-md-links/test/folder/anotherFolder/randomStuff/theRaven.md', 'utf8', function(error, file){
+//     console.log(file);
+// });
+// Second try that returns a Promise <Pending>
+const readFile = (pathname) => {
+    return new Promise((resolve, reject) => {
+        fs.readFile(pathname, 'utf8', (error, file) => {
+            return error ? reject(error) : resolve(file);
+        });
+    });
+};
 
-module.exports = { fileExists, checkPath, convertToAbsolutePath, isDirectory, readDirectory, isFile, isMdFile, getMdFileArray };
+module.exports = { fileExists, checkPath, convertToAbsolutePath, isDirectory, readDirectory, isFile, isMdFile, getMdFileArray, readFile };
