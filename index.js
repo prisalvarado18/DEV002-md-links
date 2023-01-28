@@ -81,5 +81,5 @@ const readFile = (pathname) => {
         });
     });
 };
-
+console.log(readFile('C:/Users/palva/OneDrive/Documents/proyectosLaboratoria/DEV002-md-links/test/folder/anotherFolder/randomStuff/theRaven.md'));
 module.exports = { fileExists, checkPath, convertToAbsolutePath, isDirectory, readDirectory, isFile, isMdFile, getMdFileArray };
