@@ -76,26 +76,8 @@ As things stand now, powerful people are doing too little to build new instituti
 
 The calling of our time echoes Carlyle’s demand for great leaders, as well as Weber’s meditation on the institutionalization of the best individual qualities. We need great men and women who devote themselves to revitalizing our institutions of government and education. They must imagine improved alternatives. They must make our ugly politics bright and hopeful again. They must see themselves as part of history, just as they make history.
 
-[![bioline](https://globalbrief.ca/wp-content/uploads/2009/04/bioline.gif)](https://globalbrief.ca/wp-content/uploads/2009/04/bioline.gif)
-
 **_Jeremi Suri is the Mack Brown Distinguished Chair for Leadership in Global Affairs and a Professor of History and Public Affairs at the University of Texas at Austin. He is the author of five books – most recently:_ Liberty’s Surest Guardian: American Nation-Building from the Founders to Obama_._**
 
 ###### _(Illustration: David Plunkert)_
-
-Tags:
-
-*   [Global Brief](https://globalbrief.ca/tag/global-brief/)
-*   [Jeremi Suri](https://globalbrief.ca/tag/jeremi-suri/)
-*   [Kim Jong-un](https://globalbrief.ca/tag/kim-jong-un/)
-
-### You Might Also Enjoy This in GB
-
-[How to Name This Era in US Foreign Policy?](https://globalbrief.ca/2019/07/how-to-name-this-era-in-us-foreign-policy/)
-
-[World Order in Flux: Toward a New Canadian Geo-Strategy](https://globalbrief.ca/2019/08/world-order-in-flux-toward-a-new-canadian-geo-strategy/)
-
-![](data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==)
-
-![global brief](data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==)
 
 ![](https://globalbrief.ca/wp-content/uploads/2019/09/subscribe.jpg)
