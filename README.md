@@ -10,6 +10,7 @@
 * [2. Summary](#2-summary)
 * [3. Objectives](#3-objectives)
 * [4. Project Plan](#4-project-plan)
+* [5. Functionality](#4-functionality)
 
 
 ***
@@ -41,43 +42,42 @@ This is a Node.js library that checks and validates URL links in one or several 
 
 ![flowchart](./src/assets/markdown_extractor_palvarado_flowchart.png)
 
+## 5. Functionality
+
 ### 1) JavaScript API
 
-El módulo debe poder **importarse** en otros scripts de Node.js y debe ofrecer la
-siguiente interfaz:
+The module can be **imported** into other Node.js scripts and provides the following interface:
 
 #### `mdLinks(path, options)`
 
-##### Argumentos
+##### Arguments
 
-* `path`: Ruta **absoluta** o **relativa** al **archivo** o **directorio**.
-Si la ruta pasada es relativa, debe resolverse como relativa al directorio
-desde donde se invoca node - _current working directory_).
-* `options`: Un objeto con **únicamente** la siguiente propiedad:
-  - `validate`: Booleano que determina si se desea validar los links
-    encontrados.
+* `path`: **Absolute** or **relative** path to the file or directory.
+If the path passed is relative, it resolves as relative to the directory
+where node is called from - _current working directory_).
+* `options`: An object with **only** the following property:
+   - `validate`: Boolean that determines if you want to validate the links found.
 
-##### Valor de retorno
+##### Return value
 
-La función debe **retornar una promesa** (`Promise`) que **resuelva a un arreglo**
-(`Array`) de objetos (`Object`), donde cada objeto representa un link y contiene
-las siguientes propiedades
+The function **returns a promise** (`Promise`) that **resolves to an array**
+(`Array`) of objects (`Object`) where each object represents a link and contains the following properties:
 
-Con `validate:false` :
+With `validate:false` :
 
-* `href`: URL encontrada.
-* `text`: Texto que aparecía dentro del link (`<a>`).
-* `file`: Ruta del archivo donde se encontró el link.
+* `href`: Found URL.
+* `text`: Text that appears within the link (`<a>`).
+* `file`: Path where the link was found.
 
-Con `validate:true` :
+With `validate:true` :
 
-* `href`: URL encontrada.
-* `text`: Texto que aparecía dentro del link (`<a>`).
-* `file`: Ruta del archivo donde se encontró el link.
-* `status`: Código de respuesta HTTP.
-* `ok`: Mensaje `fail` en caso de fallo u `ok` en caso de éxito.
+* `href`: Found URL.
+* `text`: Text that appears within the link (`<a>`).
+* `file`: Path where the link was found.
+* `status`: HTTP response status code.
+* `ok`: `fail` message on failure or `ok` on success.
 
-#### Ejemplo (resultados como comentarios)
+#### Example (results as comments)
 
 ```js
 const mdLinks = require("md-links");
@@ -101,53 +101,40 @@ mdLinks("./some/dir")
   .catch(console.error);
 ```
 
-### 2) CLI (Command Line Interface - Interfaz de Línea de Comando)
+### 2) CLI (Command Line Interface)
 
-El ejecutable de nuestra aplicación debe poder ejecutarse de la siguiente
-manera a través de la **terminal**:
+The executable of this program is executed via the **terminal** as follows:
 
 `md-links <path-to-file> [options]`
 
-Por ejemplo:
+For instance:
 
 ```sh
 $ md-links ./some/example.md
-./some/example.md http://algo.com/2/3/ Link a algo
-./some/example.md https://otra-cosa.net/algun-doc.html algún doc
+./some/example.md http://something.com/2/3/ Link to something 
+./some/example.md https://another-example.net/some-document.html Some document
 ./some/example.md http://google.com/ Google
 ```
-
-El comportamiento por defecto no debe validar si las URLs responden ok o no,
-solo debe identificar el archivo markdown (a partir de la ruta que recibe como
-argumento), analizar el archivo Markdown e imprimir los links que vaya
-encontrando, junto con la ruta del archivo donde aparece y el texto
-que hay dentro del link (truncado a 50 caracteres).
-
 #### Options
 
 ##### `--validate`
 
-Si pasamos la opción `--validate`, el módulo debe hacer una petición HTTP para
-averiguar si el link funciona o no. Si el link resulta en una redirección a una
-URL que responde ok, entonces consideraremos el link como ok.
+If the user enters the `--validate` option, the module makes an HTTP request to find out whether the link is working or not. If the link results in a redirection to a URL that answers ok, then the link is considered as ok.
 
-Por ejemplo:
+For instance:
 
 ```sh
 $ md-links ./some/example.md --validate
-./some/example.md http://algo.com/2/3/ ok 200 Link a algo
-./some/example.md https://otra-cosa.net/algun-doc.html fail 404 algún doc
+./some/example.md http://something.com/2/3/ ok 200 Link to something
+./some/example.md https://other-example.net/some-document.html fail 404 Some document
 ./some/example.md http://google.com/ ok 301 Google
 ```
 
-Vemos que el _output_ en este caso incluye la palabra `ok` o `fail` después de
-la URL, así como el status de la respuesta recibida a la petición HTTP a dicha
-URL.
+In this case, the _output_ includes the word `ok` or `fail` after the URL, as well as the received response' status to the HTTP request to the entered URL.
 
 ##### `--stats`
 
-Si pasamos la opción `--stats` el output (salida) será un texto con estadísticas
-básicas sobre los links.
+If the user enters the `--stats` option, the output is a text with basic statistics on the links.
 
 ```sh
 $ md-links ./some/example.md --stats
@@ -155,8 +142,7 @@ Total: 3
 Unique: 3
 ```
 
-También podemos combinar `--stats` y `--validate` para obtener estadísticas que
-necesiten de los resultados de la validación.
+The user can also combine `--stats` and `--validate` to get statistics that need the validation results.
 
 ```sh
 $ md-links ./some/example.md --stats --validate
@@ -164,43 +150,3 @@ Total: 3
 Unique: 3
 Broken: 1
 ```
-
-## 6. Entregables
-
-Módulo instalable via `npm install <github-user>/md-links`. Este módulo debe
-incluir tanto **un ejecutable** como **una interfaz** que podamos importar con `require`
-para usarlo programáticamente.
-
-
-
-## 9. Checklist
-
-### General
-
-* [ ] Puede instalarse via `npm install --global <github-user>/md-links`
-
-### `README.md`
-
-* [ ] Un board con el backlog para la implementación de la librería.
-* [ ] Documentación técnica de la librería.
-* [ ] Guía de uso e instalación de la librería
-
-### API `mdLinks(path, opts)`
-
-* [ ] El módulo exporta una función con la interfaz (API) esperada.
-* [ ] Implementa soporte para archivo individual
-* [ ] Implementa soporte para directorios
-* [ ] Implementa `options.validate`
-
-### CLI
-
-* [ ] Expone ejecutable `md-links` en el path (configurado en `package.json`)
-* [ ] Se ejecuta sin errores / output esperado
-* [ ] Implementa `--validate`
-* [ ] Implementa `--stats`
-
-### Pruebas / tests
-
-* [ ] Pruebas unitarias cubren un mínimo del 70% de statements, functions,
-  lines, y branches.
-* [ ] Pasa tests (y linters) (`npm test`).
