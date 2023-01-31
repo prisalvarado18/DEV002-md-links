@@ -8,8 +8,8 @@ const path = require('path');
 // It reads, creates, updates, deletes, and renames files
 const fs = require('fs');
 // The Fetch API:
-//...is a high-level function and takes a URL to produce 
-// a promise that resolves to the response.
+//...is a high-level function that takes a URL as argument to return 
+// a promise that resolves to the response of that request.
 //...provides a JavaScript interface to access and manipulate 
 // (asynchronously over the network) parts of the HTTP channel,
 // such as requests and responses.
@@ -21,13 +21,13 @@ const fileExists = (pathname) => {
     return fileExists ? true : false;
 }
 
-// Check if the path is absolute or relative and return an absolute one
+// Check if path is absolute or relative and return an absolute one
 // Check if path is absolute
 const checkPath = (pathname) => {
     return path.isAbsolute(pathname) ? true : false;
 }
 
-// Convert relative to absolute paths
+// Convert relative to absolute path
 const convertToAbsolutePath = (pathname) => {
     const cwd = process.cwd();
     return path.resolve(cwd, pathname);
@@ -50,7 +50,7 @@ const readDirectory = (pathname) => {
 // console.log(readDirectory('C:/Users/palva/OneDrive/Documents/proyectosLaboratoria/DEV002-md-links/test/folder'));
 // console.log(readDirectory('C:/Users/palva/OneDrive/Documents/proyectosLaboratoria/DEV002-md-links/test/folder/emptyFolder'));
 
-// Check if a path points to a file
+// Check if the given path points to a file
 const isFile = (pathname) => {
     const stats = fs.statSync(pathname);
     return stats.isFile() ? true : false;
@@ -60,7 +60,7 @@ const isFile = (pathname) => {
 
 // Check if the entered path points to a .md file
 const isMdFile = (pathname) => {
-    const stats = fs.statSync(pathname);
+    // const stats = fs.statSync(pathname);
     return path.extname(pathname) === ".md" ? true : false;
 }
 // console.log(isMdFile('C:/Users/palva/OneDrive/Documents/proyectosLaboratoria/DEV002-md-links/test/folder/quiz.txt'));
@@ -70,7 +70,7 @@ const isMdFile = (pathname) => {
 const getMdFileArray = (pathname) => {
     let files = [];
     if (isFile(pathname) && isMdFile(pathname)) {
-        files.push(pathname)
+        files.push(pathname);
     } else if (isDirectory(pathname)) {
         const items = readDirectory(pathname);
         items.map((item) => {
@@ -85,15 +85,17 @@ const getMdFileArray = (pathname) => {
 // fs.readFile('C:/Users/palva/OneDrive/Documents/proyectosLaboratoria/DEV002-md-links/test/folder/anotherFolder/randomStuff/theRaven.md', 'utf8', function(error, file){
 //     console.log(file);
 // });
-// Second try that returns a Promise <Pending>
-// const readFile = (pathname) => {
-//     return new Promise((resolve, reject) => {
-//         fs.readFile(pathname, 'utf8', (error, file) => {
-//             return error ? reject(error) : resolve(file);
-//         });
-//     });
-// };
+// Second try with a synchronous function
 // const readFile = (file) => fs.readFileSync(file, 'utf-8');
+
+// Third try that returns a Promise <Pending>
+const readFile = (pathname) => {
+    return new Promise((resolve, reject) => {
+        fs.readFile(pathname, 'utf8', (error, file) => {
+            return error ? reject(error) : resolve(file);
+        });
+    });
+};
 // Get links
 // First try
 // const getLinks = (file) => {
@@ -112,15 +114,7 @@ const getMdFileArray = (pathname) => {
 //         });
 //     });
 // };
-const readFile = (pathname) => {
-    return new Promise((resolve, reject) => {
-        fs.readFile(pathname, 'utf8', (error, file) => {
-            return error ? reject(error) : resolve(file);
-        });
-    });
-};
-
-// getLinks sincrono
+// Third try synchronous function
 // const getLinks = (arrLinks) => {
 //     let links = [];
 //     arrLinks.forEach((file) => {
