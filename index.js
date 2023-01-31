@@ -7,7 +7,12 @@ const path = require('path');
 // Import the Node.js file system module to work with the file system
 // It reads, creates, updates, deletes, and renames files
 const fs = require('fs');
-const fsp = require('fs/promises');
+// The Fetch API:
+//...is a high-level function and takes a URL to produce 
+// a promise that resolves to the response.
+//...provides a JavaScript interface to access and manipulate 
+// (asynchronously over the network) parts of the HTTP channel,
+// such as requests and responses.
 const fetch = require('node-fetch');
 
 // Check if path exists
@@ -114,16 +119,7 @@ const readFile = (pathname) => {
         });
     });
 };
-// const readFileVale = (pathname) => {
-//     return new Promise((resolve, reject) => {
-//         fs.readFile(pathname, "utf-8", function (error, archivo) {
-//             if (error) {
-//                 reject('lo siento ocurrio un Error')
-//             }
-//             resolve(archivo)
-//         })
-//     })
-// }
+
 // getLinks sincrono
 // const getLinks = (arrLinks) => {
 //     let links = [];
