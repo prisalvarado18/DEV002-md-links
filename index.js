@@ -189,7 +189,7 @@ const getLinks = (pathname) => {
             .catch((error) => reject(error));
     });
 }
-
+/*
 let outcomeGoesToFetch = [
     {
         href: 'https://www.poetryfoundation.org/poets/edgar-allan-poe',
@@ -197,7 +197,7 @@ let outcomeGoesToFetch = [
         file: 'C:\\Users\\palva\\OneDrive\\Documents\\proyectosLaboratoria\\DEV002-md-links\\test\\folder/anotherFolder/inceptionFolder/archive_003.md'
     }
 ]
-
+*/
 // Function to validate link with HTTP requests
 const validateLinks = (objectsArray) => Promise.all(objectsArray.map((object) => fetch(object.href)
     //Promise.all returns a resolved promise array and cuts off on the first reject
@@ -214,7 +214,7 @@ const validateLinks = (objectsArray) => Promise.all(objectsArray.map((object) =>
         status: 'broken file',
         ok: 'fail',
     }))));
-
+/*
 let validateLinksOutcome = [{
     href: 'https://www.youtube.com/?hl=es&gl=BR',
     text: 'Youtube',
@@ -222,6 +222,7 @@ let validateLinksOutcome = [{
     status: 200,
     ok: 'ok'
 }];
+*/
 // ..................................................................Third try: HTTP requests
 // const decons = outcomeGoesToFetch[0];
 // const object = outcomeGoesToFetch.map(arrayLinks => arrayLinks.href);
@@ -258,7 +259,7 @@ let validateLinksOutcome = [{
 //         console.log("Name of the first user in the array:");
 //         console.log(json[0].name);
 // })
-
+/*
 let outcomeGoesToFetch2 = [
     {
         href: 'https://www.poetryfoundation.org/poets/edgar-allan-poe',
@@ -276,7 +277,7 @@ let outcomeGoesToFetch2 = [
         file: '[Youtube](https://www.youtube.com/watch?v=F4i3O7T488I&t)' // ---> Should be the path
     }
 ]
-
+*/
 // Stats for 'stats: true'
 const reportStats = (objectsArray) => {
     const extractHref = objectsArray.map((link) => link.href);//Enter the promise and extract href's 
@@ -304,11 +305,11 @@ const reportbrokenLinks = (objectsArray) => {
     }
 }
 
-// const print = broken(outcomeGoesToFetch2);
+// const print = reportbrokenLinks(outcomeGoesToFetch2);
 // console.log(print);
-// const brokenOutcome = { total: 3, unique: 3, broken: 0 };
+// const reportbrokenLinksOutcome = { total: 3, unique: 3, broken: 0 };
 
-// Get all links from markdown file
+// Get all of the links from all of the markdown files
 // let arrayMDocuments = [];
 const getAllMdDFiles = (pathname) => {
     if (fileExists(pathname)) {
@@ -319,30 +320,12 @@ const getAllMdDFiles = (pathname) => {
 }
 
 // const array = getAllMdDFiles('C:/Users/palva/OneDrive/Documents/proyectosLaboratoria/DEV002-md-links/test/folder');
-// const arrayEnlaces = getLinks(array);
-// console.log(arrayEnlaces);
-// console.log(array);
 // arrayMDocuments.forEach((file) => {
 //     getLinks(file, 'utf8')
 //         .then((file2) => {
 //             console.log(file2);
 //         })
 // })
-// const mdLinks = (enlace, options = {}) => {
-//     let arraysillo = getAllMdDFiles(enlace);
-//     return new Promise((resolve, reject) => {
-//         const promiseList = arraysillo.map(file => options.validate ? readFileValidated(file) : readFile(file));
-
-//         return Promise.all(promiseList)
-//             .then(res => resolve([...res].flat(1)))
-//             .catch(reject);
-//     });
-// };
-
-// mdLinks(array);
-
-// console.log(mdLinks(array));
-
 
 module.exports = {
     fileExists, checkPath, convertToAbsolutePath, isDirectory, readDirectory, isFile, isMdFile, getMdFileArray, getLinks,
