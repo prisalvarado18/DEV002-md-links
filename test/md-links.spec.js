@@ -8,7 +8,7 @@
 //   });
 
 // });
-const { fileExists, checkPath, convertToAbsolutePath, isDirectory, readDirectory, isFile, isMdFile, getMdFileArray, readFile } = require('../index.js');
+const { fileExists, checkPath, convertToAbsolutePath, isDirectory, readDirectory, isFile, isMdFile, getMdFileArray, readFile, getLinks } = require('../index.js');
 
 const realAbsolutePath = 'C:/Users/palva/OneDrive/Documents/proyectosLaboratoria/DEV002-md-links/test/folder/archive.md';
 const falseRelativePath = './notRealfolder/archive.md';
@@ -28,6 +28,15 @@ const mdFilesArray = [
   'C:/Users/palva/OneDrive/Documents/proyectosLaboratoria/DEV002-md-links/test/folder/anotherFolder/randomStuff/theRaven.md',
 ]
 const latinQuote = 'C:/Users/palva/OneDrive/Documents/proyectosLaboratoria/DEV002-md-links/test/folder/anotherFolder/randomStuff/shortFile.md';
+
+const googlePath = 'C:/Users/palva/OneDrive/Documents/proyectosLaboratoria/DEV002-md-links/test/folder/anotherFolder/archive_001.md';
+let getLinksOutcome = [
+    {
+        href: 'https://www.google.com/?hl=es',
+        text: 'Google',
+        file: 'C:/Users/palva/OneDrive/Documents/proyectosLaboratoria/DEV002-md-links/test/folder/anotherFolder/archive_001.md'
+    }
+]
 
 describe('fileExists', () => {
   it('should be a function', () => {
@@ -129,7 +138,19 @@ describe('readFile', () => {
   it('should return "Nemo censetur ignorare legem"', () => {
     expect(readFile(latinQuote)).resolves.toEqual('Nemo censetur ignorare legem');
   });
-  // it('should return an array with markdwon files', () => {
+  // it('should return error', () => {
   //   expect(readFile(dirEmptyPath)).rejects.toThrow(error);
+  // });
+});
+
+describe('getLinks', () => {
+  it('should be a function', () => {
+    expect(typeof getLinks).toBe('function');
+  });
+  it('should return array of objects', () => {
+    expect(getLinks(googlePath)).resolves.toEqual(getLinksOutcome);
+  });
+  // it('should return error', () => {
+  //   expect(getLinks(dirEmptyPath)).rejects.toThrow(error);
   // });
 });
