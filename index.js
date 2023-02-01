@@ -328,7 +328,15 @@ const getAllMdDFiles = (pathname) => {
 // })
 
 module.exports = {
-    fileExists, checkPath, convertToAbsolutePath, isDirectory, readDirectory, isFile, isMdFile, getMdFileArray, getLinks,
+    fileExists, 
+    checkPath, 
+    convertToAbsolutePath, 
+    isDirectory, 
+    readDirectory, 
+    isFile, 
+    isMdFile, 
+    getMdFileArray, 
+    getLinks,
     validateLinks,
     readFile,
     reportStats,
