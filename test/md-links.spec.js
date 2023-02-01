@@ -8,7 +8,7 @@
 //   });
 
 // });
-const { fileExists, checkPath, convertToAbsolutePath, isDirectory, readDirectory, isFile, isMdFile, getMdFileArray, readFile, getLinks, validateLinks } = require('../index.js');
+const { fileExists, checkPath, convertToAbsolutePath, isDirectory, readDirectory, isFile, isMdFile, getMdFileArray, readFile, getLinks, validateLinks, reportStats } = require('../index.js');
 
 const realAbsolutePath = 'C:/Users/palva/OneDrive/Documents/proyectosLaboratoria/DEV002-md-links/test/folder/archive.md';
 const falseRelativePath = './notRealfolder/archive.md';
@@ -45,6 +45,8 @@ let validateLinksOutcome = [{
   status: 200,
   ok: 'ok'
 }];
+
+const reportStatsOutcome = {"total": 1, "unique": 1};
 
 describe('fileExists', () => {
   it('should be a function', () => {
@@ -169,6 +171,18 @@ describe('validateLinks', () => {
   });
   it('should return array of objects', () => {
     expect(validateLinks(getLinksOutcome)).resolves.toEqual(validateLinksOutcome);
+  });
+  // it('should return error', () => {
+  //   expect(validateLinks(dirEmptyPath)).rejects.toThrow(error);
+  // });
+});
+
+describe('reportStats', () => {
+  it('should be a function', () => {
+    expect(typeof reportStats).toBe('function');
+  });
+  it('should return {"total": 1, "unique": 1}', () => {
+    expect(reportStats(getLinksOutcome)).toEqual(reportStatsOutcome);
   });
   // it('should return error', () => {
   //   expect(validateLinks(dirEmptyPath)).rejects.toThrow(error);
