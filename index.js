@@ -278,7 +278,7 @@ let outcomeGoesToFetch2 = [
 ]
 
 // Stats for 'stats: true'
-const stats = (objectsArray) => {
+const reportStats = (objectsArray) => {
     const extractHref = objectsArray.map((link) => link.href);//Enter the promise and extract href's 
     // The Set object lets you store unique values of any type, whether primitive values or object references.
     // https://stackoverflow.com/questions/36588890/es6-set-allows-duplicate-array-object
@@ -289,17 +289,17 @@ const stats = (objectsArray) => {
     }
 }
 
-// const print = stats(outcomeGoesToFetch2);
+// const print = reportStats(outcomeGoesToFetch2);
 // console.log(print);
-// const statsOutcome = { total: 3, unique: 3 };
+// const reportStatsOutcome = { total: 3, unique: 3 };
 
-const broken = (links) => {
-    // console.log(links.length)
-    const brokenLinks = links.filter((link) => link.ok === "fail");
+const reportbrokenLinks = (objectsArray) => {
+    // console.log(objectsArray.length)
+    const brokenLinks = objectsArray.filter((link) => link.ok === "fail");
     // console.log(brokenLinks)
     return {
-        total: links.length, /*estadistica(links).total,*/
-        unique: stats(links).unique,
+        total: objectsArray.length, /*reportStats(objectsArray).total,*/
+        unique: reportStats(objectsArray).unique,
         broken: brokenLinks.length
     }
 }
@@ -348,7 +348,7 @@ module.exports = {
     fileExists, checkPath, convertToAbsolutePath, isDirectory, readDirectory, isFile, isMdFile, getMdFileArray, getLinks,
     validateLinks,
     readFile,
-    stats,
-    broken,
+    reportStats,
+    reportbrokenLinks,
     getAllMdDFiles,
 };
