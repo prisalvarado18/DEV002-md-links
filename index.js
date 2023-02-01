@@ -222,7 +222,7 @@ let validateLinksOutcome = [{
     status: 200,
     ok: 'ok'
 }];
-// ..................................................................Third try: requests
+// ..................................................................Third try: HTTP requests
 // const decons = outcomeGoesToFetch[0];
 // const object = outcomeGoesToFetch.map(arrayLinks => arrayLinks.href);
 // const link = object[0];
@@ -238,7 +238,7 @@ let validateLinksOutcome = [{
 //         console.log(newObject);
 //     })
 
-// ..................................................................Second try: requests
+// ..................................................................Second try: HTTP requests
 // const status200 = 'https://jsonplaceholder.typicode.com/users';
 // const status400= 'https://www.domain.com/kb/%%404_not_found_error/';
 // const status404 = 'https://www.tumblr.com/kjewhfuijwe';
@@ -249,7 +249,7 @@ let validateLinksOutcome = [{
 //         }
 //         console.log(newObject);
 //     })
-// ..................................................................First try: requests
+// ..................................................................First try: HTTP requests
 // fetch('https://jsonplaceholder.typicode.com/users')
 //     .then(res => res.json())
 //     .then(json => {
@@ -259,47 +259,39 @@ let validateLinksOutcome = [{
 //         console.log(json[0].name);
 // })
 
-
-
-
-
-
-
-
-// const ruta = '[Edgar Allan Poe](https://www.poetryfoundation.org/poets/edgar-allan-poe)';
-let resultadoEntraFetch2 = [
+let outcomeGoesToFetch2 = [
     {
         href: 'https://www.poetryfoundation.org/poets/edgar-allan-poe',
         text: 'Edgar Allan Poe',
-        file: '[Edgar Allan Poe](https://www.poetryfoundation.org/poets/edgar-allan-poe)'
+        file: '[Edgar Allan Poe](https://www.poetryfoundation.org/poets/edgar-allan-poe)' // ---> Should be the path
     },
     {
         href: 'https://www.google.com',
         text: 'Google',
-        file: '[Google](https://www.google.com)'
+        file: '[Google](https://www.google.com)' // ---> Should be the path
     },
     {
         href: 'https://www.youtube.com/watch?v=F4i3O7T488I&t',
         text: 'Youtube',
-        file: '[Youtube](https://www.youtube.com/watch?v=F4i3O7T488I&t)'
+        file: '[Youtube](https://www.youtube.com/watch?v=F4i3O7T488I&t)' // ---> Should be the path
     }
 ]
 
 // Stats for 'stats: true'
 const stats = (objectsArray) => {
-    const extractHref = objectsArray.map((link) => link.href);//entro a la promesa y extraigo los href  
+    const extractHref = objectsArray.map((link) => link.href);//Enter the promise and extract href's 
     // The Set object lets you store unique values of any type, whether primitive values or object references.
     // https://stackoverflow.com/questions/36588890/es6-set-allows-duplicate-array-object
-    const repeatedHref = new Set(extractHref); //elimina links repetidos
+    const repeatedHref = new Set(extractHref); // remove repeated links
     return {
         total: extractHref.length,
         unique: repeatedHref.size
     }
 }
 
-// const imprimir = stats(resultadoEntraFetch2);
-// console.log(imprimir);
-// const statsResult = { total: 3, unique: 3 };
+// const print = stats(outcomeGoesToFetch2);
+// console.log(print);
+// const statsOutcome = { total: 3, unique: 3 };
 
 const broken = (links) => {
     // console.log(links.length)
@@ -312,9 +304,9 @@ const broken = (links) => {
     }
 }
 
-// const imprimir = broken(resultadoEntraFetch2);
-// console.log(imprimir);
-// const brokenResult = { total: 3, unique: 3, broken: 0 };
+// const print = broken(outcomeGoesToFetch2);
+// console.log(print);
+// const brokenOutcome = { total: 3, unique: 3, broken: 0 };
 
 // Get all links from markdown file
 // let arrayMDocuments = [];
