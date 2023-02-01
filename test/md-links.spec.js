@@ -8,7 +8,7 @@
 //   });
 
 // });
-const { fileExists, checkPath, convertToAbsolutePath, isDirectory, readDirectory, isFile, isMdFile, getMdFileArray, readFile, getLinks, validateLinks, reportStats, reportbrokenLinks } = require('../index.js');
+const { fileExists, checkPath, convertToAbsolutePath, isDirectory, readDirectory, isFile, isMdFile, getMdFileArray, readFile, getLinks, validateLinks, reportStats, reportbrokenLinks, getAllMdDFiles } = require('../index.js');
 
 const realAbsolutePath = 'C:/Users/palva/OneDrive/Documents/proyectosLaboratoria/DEV002-md-links/test/folder/archive.md';
 const falseRelativePath = './notRealfolder/archive.md';
@@ -202,4 +202,13 @@ describe('reportbrokenLinks', () => {
   //   expect(reportbrokenLinks(dirEmptyPath)).rejects.toThrow(error);
   // });
   // 
+});
+
+describe('getAllMdDFiles', () => {
+  it('should be a function', () => {
+    expect(typeof getAllMdDFiles).toBe('function');
+  });
+  it('should return an array of .md files', () => {
+    expect(getAllMdDFiles(mdFilesPath)).toEqual(mdFilesArray);
+  });
 });
