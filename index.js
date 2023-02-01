@@ -100,8 +100,8 @@ const readFile = (pathname) => {
 // First try
 // const getLinks = (file) => {
 //     fs.readFile(file, 'utf8', (error, data) => {
-//         const enlaces = data.match(/\[([\w\s\d]+)\]\(((?:\/|https?:\/\/)[\w\d./?=#]+[a-zA-Z0-9!-_$]+)\)/gi);
-//         return error ? (error) : (enlaces);
+//         const links = data.match(/\[([\w\s\d]+)\]\(((?:\/|https?:\/\/)[\w\d./?=#]+[a-zA-Z0-9!-_$]+)\)/gi);
+//         return error ? (error) : (links);
 //     });
 // };
 // console.log(getLinks('C:/Users/palva/OneDrive/Documents/proyectosLaboratoria/DEV002-md-links/test/folder/anotherFolder/randomStuff/theRaven.md'))
@@ -109,22 +109,22 @@ const readFile = (pathname) => {
 // const getLinks = (file, type) => {
 //     return new Promise((resolve, reject) => {
 //         fs.readFile(file, type, (error, data) => {
-//             const enlaces = data.match(/\[([\w\s\d]+)\]\(((?:\/|https?:\/\/)[\w\d./?=#]+[a-zA-Z0-9!-_$]+)\)/gi);
-//             return error ? reject(error) : resolve(enlaces);
+//             const links = data.match(/\[([\w\s\d]+)\]\(((?:\/|https?:\/\/)[\w\d./?=#]+[a-zA-Z0-9!-_$]+)\)/gi);
+//             return error ? reject(error) : resolve(links);
 //         });
 //     });
 // };
-// Third try synchronous function
-// const getLinks = (arrLinks) => {
+// Third try with a synchronous function
+// const getLinks = (linksArray) => {
 //     let links = [];
-//     arrLinks.forEach((file) => {
-//         // read the files
+//     linksArray.forEach((file) => {
+//         // Reading files
 //         const content = readFile(file);
-//         // obtain the urls
+//         // Gathering the URLs
 //         const regExp = /\[(.+)\]\((https?:\/\/.+)\)/gi;
 //         const linksFound = [...content.matchAll(regExp)];
 //         if (linksFound !== null || linksFound.length !== 0) {
-//             // ensambles the array of objects
+//             // Ensambling the array of objects
 //             linksFound.forEach(link => {
 //                 links.push({
 //                     file: file,
@@ -136,24 +136,15 @@ const readFile = (pathname) => {
 //     })
 //     return links
 // }
-// getLinks Ansincrono
-// const getLinks = (file, type) => {
-//     return new Promise((resolve, reject) => {
-//         fs.readFile(file, type, (error, data) => {
-//             const enlaces = data.match(/\[([\w\s\d]+)\]\(((?:\/|https?:\/\/)[\w\d./?=#]+[a-zA-Z0-9!-_$]+)\)/gi);
-//             return error ? reject(error) : resolve(enlaces);
-//         });
-//     });
-// };
-// ...................................... Realizando pruebas ......................................
+// ......................................... Making tests .........................................
 // ................................................................................................
 // let linksArray = []
 // const regEx = /\[([\w\s\d]+)\]\(((?:\/|https?:\/\/)[\w\d./?=#]+[a-zA-Z0-9!-_$]+)\)/gi;
-// const ruta = '[Edgar Allan Poe](https://www.poetryfoundation.org/poets/edgar-allan-poe)';
-// let matchLink = regEx.exec(ruta);
+// const pathname = '[Edgar Allan Poe](https://www.poetryfoundation.org/poets/edgar-allan-poe)';
+// let matchLink = regEx.exec(pathname);
 // /*'[Edgar Allan Poe](https://www.poetryfoundation.org/poets/edgar-allan-poe)',
-//       'Edgar Allan Poe',
-//       'https://www.poetryfoundation.org/poets/edgar-allan-poe',
+//       'Edgar Allan Poe', // ----> I need this one [1]
+//       'https://www.poetryfoundation.org/poets/edgar-allan-poe', // ----> I need this one [2]
 //       index: 0,
 //       input: '[Edgar Allan Poe](https://www.poetryfoundation.org/poets/edgar-allan-poe)',
 //       groups: undefined*/
@@ -161,12 +152,20 @@ const readFile = (pathname) => {
 //     linksArray.push({
 //         href: matchLink[2],
 //         text: matchLink[1],
-//         file: ruta,
+//         file: pathname,
 //     });
-//     matchLink = regEx.exec(ruta);
+//     matchLink = regEx.exec(pathname);
 // }
-// // console.log(linksArray);
-
+// console.log(linksArray);
+// /* 
+// [
+//     {
+//       href: 'https://www.poetryfoundation.org/poets/edgar-allan-poe',
+//       text: 'Edgar Allan Poe',
+//       file: '[Edgar Allan Poe](https://www.poetryfoundation.org/poets/edgar-allan-poe)' // ----> Here, I need to pass the path
+//     }
+// ]
+// */
 const getLinks = (pathname) => {
     return new Promise((resolve, reject) => {
         const objectsArray = [];
@@ -190,16 +189,18 @@ const getLinks = (pathname) => {
             .catch((error) => reject(error));
     });
 }
-let resultadoEntraFetch = [
+
+let outcomeGoesToFetch = [
     {
         href: 'https://www.poetryfoundation.org/poets/edgar-allan-poe',
         text: 'Edgar Allan Poe',
-        file: '[Edgar Allan Poe](https://www.poetryfoundation.org/poets/edgar-allan-poe)'
+        file: 'C:\\Users\\palva\\OneDrive\\Documents\\proyectosLaboratoria\\DEV002-md-links\\test\\folder/anotherFolder/inceptionFolder/archive_003.md'
     }
 ]
 
-//FUNCION PARA VALIDAR LNK CON PETICIONES HTTP
-const validateLinks = (objectsArray) => Promise.all(objectsArray.map((object) => fetch(object.href) //Promise.all devuelve un array de promesa resuelta y se corta al primer reject
+// Function to validate link with HTTP requests
+const validateLinks = (objectsArray) => Promise.all(objectsArray.map((object) => fetch(object.href)
+    //Promise.all returns a resolved promise array and cuts off on the first reject
     .then((response) => {
         const objectResponse = {
             ...object,
@@ -214,41 +215,41 @@ const validateLinks = (objectsArray) => Promise.all(objectsArray.map((object) =>
         ok: 'fail',
     }))));
 
-let resultadoValidateLinks = [{
+let validateLinksOutcome = [{
     href: 'https://www.youtube.com/?hl=es&gl=BR',
     text: 'Youtube',
     file: 'C:\\Users\\palva\\OneDrive\\Documents\\proyectosLaboratoria\\DEV002-md-links\\test\\folder/anotherFolder/inceptionFolder/archive_003.md',
     status: 200,
     ok: 'ok'
 }];
-// ..................................................................Tercera prueba: peticiones
-// const decons = resultadoEntraFetch[0];
-// const object = resultadoEntraFetch.map(arrayLinks => arrayLinks.href)
-// const enlace = object[0]
-// fetch(enlace)
+// ..................................................................Third try: requests
+// const decons = outcomeGoesToFetch[0];
+// const object = outcomeGoesToFetch.map(arrayLinks => arrayLinks.href);
+// const link = object[0];
+// fetch(link)
 //     .then(res => {
-//         const status = res.headers.get("status");
-//         console.log(status);
-//         const objeto = {
+//         // const status = res.headers.get("status");
+//         // console.log(status);
+//         const newObject = {
 //             ...decons,
 //             status: res.status,
 //             ok: res.ok ? 'ok' : 'fail',
 //         }
-//         console.log(objeto);
+//         console.log(newObject);
 //     })
 
-// ..................................................................Segunda prueba: peticiones
+// ..................................................................Second try: requests
 // const status200 = 'https://jsonplaceholder.typicode.com/users';
 // const status400= 'https://www.domain.com/kb/%%404_not_found_error/';
 // const status404 = 'https://www.tumblr.com/kjewhfuijwe';
 // fetch(status404)
 //     .then(res => {
-//         const objeto = {
+//         const newObject = {
 //             status: res.status,
 //         }
-//         console.log(objeto);
+//         console.log(newObject);
 //     })
-// ..................................................................Primera prueba: peticiones
+// ..................................................................First try: requests
 // fetch('https://jsonplaceholder.typicode.com/users')
 //     .then(res => res.json())
 //     .then(json => {
