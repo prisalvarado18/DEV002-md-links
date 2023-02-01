@@ -7,7 +7,6 @@ const mdLinks = (path, options) => {
             console.log('You have not entered any option')
             const pathname = getAllMdDFiles(path)
             pathname.forEach(element => {
-                // resolve(getLinks(e))
                 getLinks(element)
                     .then(item => {
                         resolve(item);
