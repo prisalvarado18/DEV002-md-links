@@ -8,7 +8,7 @@
 //   });
 
 // });
-const { fileExists, checkPath, convertToAbsolutePath, isDirectory, readDirectory, isFile, isMdFile, getMdFileArray, readFile, getLinks, validateLinks, reportStats, reportbrokenLinks, getAllMdDFiles } = require('../index.js');
+const { fileExists, checkPath, convertToAbsolutePath, isDirectory, readDirectory, isFile, isMdFile, getMdFileArray, readFile, getLinks, validateLinks, reportStats, reportbrokenLinks } = require('../index.js');
 
 const realAbsolutePath = 'C:/Users/palva/OneDrive/Documents/proyectosLaboratoria/DEV002-md-links/test/folder/archive.md';
 const falseRelativePath = './notRealfolder/archive.md';
@@ -149,9 +149,9 @@ describe('readFile', () => {
   it('should return "Nemo censetur ignorare legem"', () => {
     expect(readFile(latinQuote)).resolves.toEqual('Nemo censetur ignorare legem');
   });
-  // it('should return error', () => {
-  //   expect(readFile(dirEmptyPath)).rejects.toThrow(error);
-  // });
+  it('should return error', () => {
+    expect(readFile('./nonExistentPath')).rejects.toThrow("ENOENT: no such file or directory, open 'C:\\Users\\palva\\OneDrive\\Documents\\proyectosLaboratoria\\DEV002-md-links\\nonExistentPath'");
+  });
 });
 
 describe('getLinks', () => {
@@ -161,9 +161,15 @@ describe('getLinks', () => {
   it('should return array of objects', () => {
     expect(getLinks(googlePath)).resolves.toEqual(getLinksOutcome);
   });
-  // it('should return error', () => {
-  //   expect(getLinks(dirEmptyPath)).rejects.toThrow(error);
+  // it('should return regEx', () => {
+    // const data = 'By [Edgar Allan Poe](https://www.poetryfoundation.org/poets/edgar-allan-poe)';
+    // const regEx = /\[([\w\s\d]+)\]\(((?:\/|https?:\/\/)[\w\d./?=#]+[a-zA-Z0-9!-_$]+)\)/gi;
+    // let matchLink = regEx.exec(data);
+    // expect(matchLink).toMatchObject('["[Edgar Allan Poe](https://www.poetryfoundation.org/poets/edgar-allan-poe)", "Edgar Allan Poe", "https://www.poetryfoundation.org/poets/edgar-allan-poe"]');
   // });
+  it('should return array of objects', () => {
+    expect(getLinks('./nonExistentPath')).rejects.toThrow("ENOENT: no such file or directory, open 'C:\\Users\\palva\\OneDrive\\Documents\\proyectosLaboratoria\\DEV002-md-links\\nonExistentPath'");
+  });
 });
 
 describe('validateLinks', () => {
@@ -202,13 +208,4 @@ describe('reportbrokenLinks', () => {
   //   expect(reportbrokenLinks(dirEmptyPath)).rejects.toThrow(error);
   // });
   // 
-});
-
-describe('getAllMdDFiles', () => {
-  it('should be a function', () => {
-    expect(typeof getAllMdDFiles).toBe('function');
-  });
-  it('should return an array of .md files', () => {
-    expect(getAllMdDFiles(mdFilesPath)).toEqual(mdFilesArray);
-  });
 });
