@@ -38,12 +38,28 @@ let getLinksOutcome = [
     }
 ]
 
+let getLinksOutcomeBroken = [
+  {
+    href: 'http://globalbrief.ca/blog/2013/06/19/what%e2%80%99s-the-future-of-capricious-war/',
+    text: 'extend threats',
+    file: 'C:\\Users\\palva\\OneDrive\\Documents\\proyectosLaboratoria\\DEV002-md-links\\test\\folder/anotherFolder/randomStuff/globalBrief.md',
+  }
+]
+
 let validateLinksOutcome = [{
   href: 'https://www.google.com/?hl=es',
   text: 'Google',
   file: 'C:/Users/palva/OneDrive/Documents/proyectosLaboratoria/DEV002-md-links/test/folder/anotherFolder/archive_001.md',
   status: 200,
   ok: 'ok'
+}];
+
+let validateLinksOutcomeBroken = [{
+  href: 'http://globalbrief.ca/blog/2013/06/19/what%e2%80%99s-the-future-of-capricious-war/',
+  text: 'extend threats',
+  file: 'C:\\Users\\palva\\OneDrive\\Documents\\proyectosLaboratoria\\DEV002-md-links\\test\\folder/anotherFolder/randomStuff/globalBrief.md',
+  status: 404,
+  ok: 'fail'
 }];
 
 const reportStatsOutcome = {"total": 1, "unique": 1};
@@ -179,9 +195,9 @@ describe('validateLinks', () => {
   it('should return array of objects', () => {
     expect(validateLinks(getLinksOutcome)).resolves.toEqual(validateLinksOutcome);
   });
-  // it('should return error', () => {
-  //   expect(validateLinks(dirEmptyPath)).rejects.toThrow(error);
-  // });
+  it('should return array of objects', () => {
+    expect(validateLinks(getLinksOutcomeBroken)).resolves.toEqual(validateLinksOutcomeBroken);
+  });
 });
 
 describe('reportStats', () => {
@@ -191,10 +207,6 @@ describe('reportStats', () => {
   it('should return {"total": 1, "unique": 1}', () => {
     expect(reportStats(getLinksOutcome)).toEqual(reportStatsOutcome);
   });
-  // it('should return error', () => {
-  //   expect(validateLinks(dirEmptyPath)).rejects.toThrow(error);
-  // });
-  // 
 });
 
 describe('reportbrokenLinks', () => {
@@ -204,10 +216,6 @@ describe('reportbrokenLinks', () => {
   it('should return { "total": 1, "unique": 1, "broken": 0 }', () => {
     expect(reportbrokenLinks(getLinksOutcome)).toEqual(reportbrokenLinksOutcome);
   });
-  // it('should return error', () => {
-  //   expect(reportbrokenLinks(dirEmptyPath)).rejects.toThrow(error);
-  // });
-  // 
 });
 
 describe('getAllMdDFiles', () => {
