@@ -5,7 +5,6 @@ const mdLinks = (path, options) => {
     return new Promise((resolve, reject) => {
         if (options[0] === undefined && options[1] === undefined) {
             console.log('You have not entered any option')
-            console.log('You have not entered any path')
             const pathname = getAllMdDFiles(path)
             pathname.forEach(element => {
                 // resolve(getLinks(e))
@@ -14,7 +13,7 @@ const mdLinks = (path, options) => {
                         resolve(item);
                         if (Object.keys(item).length == 0) {
                             console.log('\nValidation for: ' + element)
-                            console.log('El archivo no contiene enlaces')
+                            console.log('The file does not contain links')
                         } else {
                             console.log('\nValidation for: ' + element + '\n')
                             console.log(item);
@@ -23,9 +22,10 @@ const mdLinks = (path, options) => {
             })
         } else {
             if ((options[0] === '--validate' && options[1] === '--stats') || (options[0] === '--stats' && options[1] === '--validate')) {
-                console.log('Ingresaste --validate y --stats');
-                console.log(path)
+                console.log('Entered options : --validate and --stats');
+                // console.log(path)
                 const pathname = getAllMdDFiles(path);
+                // console.log(pathname);
                 pathname.forEach(element => {
                     getLinks(element)
                         .then((link) => {
@@ -34,7 +34,7 @@ const mdLinks = (path, options) => {
                                     resolve(reportbrokenLinks(outcome));
                                     if (Object.keys(outcome).length == 0) {
                                         console.log('\nValidation for: ' + element)
-                                        console.log('El archivo no contiene enlaces')
+                                        console.log('The file does not contain links')
                                     } else {
                                         console.log('\nValidation for: ' + element + '\n')
                                         console.log(reportbrokenLinks(outcome));
@@ -43,20 +43,23 @@ const mdLinks = (path, options) => {
                         })
                 })
             } else if (options[0] === '--validate') {
-                console.log('Ingresaste es validate');
-                console.log(path)
+                console.log('Entered option: --validate');
+                // console.log(path)
                 const pathname = getAllMdDFiles(path)
-                pathname.forEach(e => {
-                    getLinks(e)
+                // console.log(pathname);
+                pathname.forEach(element => {
+                    getLinks(element)
                         .then((link) => {
+                            // console.log(link);
                             validateLinks(link)
                                 .then(elemento => {
+                                    // console.log(elemento);
                                     resolve(elemento);
                                     if (Object.keys(elemento).length == 0) {
-                                        console.log('Validation for: ' + e)
-                                        console.log('El archivo no contiene enlaces\n')
+                                        console.log('Validation for: ' + element)
+                                        console.log('The file does not contain links\n')
                                     } else {
-                                        console.log('\nValidation for: ' + e + '\n')
+                                        console.log('\nValidation for: ' + element + '\n')
                                         console.log(elemento);
                                     }
                                 }).catch((error) => reject(error));
@@ -64,24 +67,24 @@ const mdLinks = (path, options) => {
 
                 })
             } else if (options[0] === '--stats') {
-                console.log('Ingresaste --stats')
+                console.log('Entered options: --stats')
                 console.log(path);
                 const pathname = getAllMdDFiles(path)
-                pathname.forEach(e => {
-                    getLinks(e)
-                        .then((elemento) => {
-                            resolve(reportStats(elemento))
-                            if (Object.keys(elemento).length == 0) {
-                                console.log('\nValidation for: ' + e)
-                                console.log('El archivo no contiene enlaces')
+                pathname.forEach(element => {
+                    getLinks(element)
+                        .then((item) => {
+                            resolve(reportStats(item))
+                            if (Object.keys(item).length == 0) {
+                                console.log('\nValidation for: ' + element)
+                                console.log('The file does not contain links')
                             } else {
-                                console.log('\nValidation for: ' + e + '\n')
-                                console.log(reportStats(elemento));
+                                console.log('\nValidation for: ' + element + '\n')
+                                console.log(reportStats(item));
                             }
                         }).catch((error) => reject(error));
                 })
             } else {
-                console.log('Ingrese una opcion valida');
+                console.log('Please enter a valid option');
                 //console.log(path)
             }
         }
