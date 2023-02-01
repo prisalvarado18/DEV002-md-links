@@ -8,7 +8,7 @@
 //   });
 
 // });
-const { fileExists, checkPath, convertToAbsolutePath, isDirectory, readDirectory, isFile, isMdFile, getMdFileArray, readFile, getLinks } = require('../index.js');
+const { fileExists, checkPath, convertToAbsolutePath, isDirectory, readDirectory, isFile, isMdFile, getMdFileArray, readFile, getLinks, validateLinks } = require('../index.js');
 
 const realAbsolutePath = 'C:/Users/palva/OneDrive/Documents/proyectosLaboratoria/DEV002-md-links/test/folder/archive.md';
 const falseRelativePath = './notRealfolder/archive.md';
@@ -37,6 +37,14 @@ let getLinksOutcome = [
         file: 'C:/Users/palva/OneDrive/Documents/proyectosLaboratoria/DEV002-md-links/test/folder/anotherFolder/archive_001.md'
     }
 ]
+
+let validateLinksOutcome = [{
+  href: 'https://www.google.com/?hl=es',
+  text: 'Google',
+  file: 'C:/Users/palva/OneDrive/Documents/proyectosLaboratoria/DEV002-md-links/test/folder/anotherFolder/archive_001.md',
+  status: 200,
+  ok: 'ok'
+}];
 
 describe('fileExists', () => {
   it('should be a function', () => {
@@ -152,5 +160,17 @@ describe('getLinks', () => {
   });
   // it('should return error', () => {
   //   expect(getLinks(dirEmptyPath)).rejects.toThrow(error);
+  // });
+});
+
+describe('validateLinks', () => {
+  it('should be a function', () => {
+    expect(typeof validateLinks).toBe('function');
+  });
+  it('should return array of objects', () => {
+    expect(validateLinks(getLinksOutcome)).resolves.toEqual(validateLinksOutcome);
+  });
+  // it('should return error', () => {
+  //   expect(validateLinks(dirEmptyPath)).rejects.toThrow(error);
   // });
 });
