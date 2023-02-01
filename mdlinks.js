@@ -10,3 +10,5 @@ let options = [optionOne, optionTwo];
 
 
 mdLinks(path, options);
+
+module.exports = { mdLinks }
