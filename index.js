@@ -209,11 +209,8 @@ const validateLinks = (objectsArray) => Promise.all(objectsArray.map((object) =>
         };
         return objectResponse;
     })
-    .catch(() => ({
-        ...object,
-        status: 'broken file',
-        ok: 'fail',
-    }))));
+    .catch((error) => error)
+))
 /*
 let validateLinksOutcome = [{
     href: 'https://www.youtube.com/?hl=es&gl=BR',
