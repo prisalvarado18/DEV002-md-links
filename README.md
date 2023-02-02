@@ -51,7 +51,7 @@ Once your project is initialized, you must execute the following command from yo
 ```
 npm i mdlinks-palvarado
 ```
-o
+or
 ```
 npm install https://github.com/prisalvarado18/DEV002-md-links.git
 ```
