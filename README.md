@@ -10,7 +10,8 @@
 * [2. Summary](#2-summary)
 * [3. Objectives](#3-objectives)
 * [4. Project Plan](#4-project-plan)
-* [5. Functionality](#4-functionality)
+* [5. Installation](#5-installation)
+* [6. Functionality](#6-functionality)
 
 
 ***
@@ -42,7 +43,21 @@ This is a Node.js library that checks and validates URL links in one or several 
 
 ![flowchart](./src/assets/markdown_extractor_palvarado_flowchart.png)
 
-## 5. Functionality
+
+## 5. Installation
+
+Once your project is initialized, you must execute the following command from your console:
+
+```
+npm i mdlinks-palvarado
+```
+o
+```
+npm install https://github.com/prisalvarado18/DEV002-md-links.git
+```
+
+
+## 6. Functionality
 
 ### 1) JavaScript API
 
