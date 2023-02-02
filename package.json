@@ -1,13 +1,15 @@
 {
   "name": "mdlinks-palvarado",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Module that checks and validates URL links in one or several markdown (*.md) files",
-  "main": "md-links.js",
+  "main": "promise.js",
   "author": {
     "name": "Priscila Alvarado",
     "email": "palvarado0918@gmail.com"
   },
-  "bin": "./md-links.js",
+  "bin": {
+    "md-links": "./md-links.js"
+  },
   "engines": {
     "node": ">=16.x"
   },
