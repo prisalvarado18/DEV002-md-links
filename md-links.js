@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const { argv } = require('process');
 const { mdLinks } = require('./promise');
 
